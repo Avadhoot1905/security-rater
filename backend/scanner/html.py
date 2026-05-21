@@ -1,9 +1,15 @@
 from __future__ import annotations
 
+import time
 from typing import Any, Dict, List
 
 import requests
 from bs4 import BeautifulSoup
+
+from utils.logger import get_logger
+
+
+logger = get_logger(__name__)
 
 
 def _detect_technologies(html: str) -> List[str]:
@@ -27,7 +33,9 @@ def scan_html(domain: str) -> Dict[str, Any]:
         "technologies": [],
     }
     url = f"https://{domain}"
+    started_at = time.perf_counter()
     try:
+        logger.info("HTML fetch start for %s", url)
         response = requests.get(url, timeout=8, allow_redirects=True)
         soup = BeautifulSoup(response.text, "html.parser")
         forms = soup.find_all("form")
@@ -51,6 +59,11 @@ def scan_html(domain: str) -> Dict[str, Any]:
                 "technologies": _detect_technologies(response.text),
             }
         )
+        logger.info("HTML parse counts for %s: forms=%d links=%d scripts=%d", domain, len(forms), len(links), len(scripts))
+        logger.info("Detected technologies for %s: %s", domain, result["technologies"])
     except Exception as error:
-        print(f"html fetch failed for {domain}: {error}")
+        logger.error("HTML parsing failed for %s: %s", domain, error)
+    finally:
+        elapsed_ms = int((time.perf_counter() - started_at) * 1000)
+        logger.info("[TIMER] html.py completed in %dms", elapsed_ms)
     return result
