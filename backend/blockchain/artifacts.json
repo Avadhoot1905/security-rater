@@ -1,0 +1,165 @@
+{
+  "address": "0x56a2DE5679d42e61ff0130E4fA70c8FdFC24b107",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "domainHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "score",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes1",
+          "name": "grade",
+          "type": "bytes1"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "ScoreCalculated",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "domain",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "domainAgeDays",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint8",
+          "name": "tlsVersion",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bool",
+          "name": "hasCSP",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "hasHSTS",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "hasForms",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "isCloudflare",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "isWordPress",
+          "type": "bool"
+        }
+      ],
+      "name": "calculateScore",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "score",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes1",
+          "name": "grade",
+          "type": "bytes1"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "domain",
+          "type": "string"
+        }
+      ],
+      "name": "getLatestScore",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "score",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes1",
+          "name": "grade",
+          "type": "bytes1"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "domainHash",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "domainHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getScoreByHash",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "score",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes1",
+          "name": "grade",
+          "type": "bytes1"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "network": "ganache",
+  "provider": "http://127.0.0.1:7545",
+  "chain_id": 1337,
+  "deployment_tx_hash": "4142ac64cd34db4c0c5ada6d3b6723a5d88f49bcdf98004e4812fd98ce2695d2",
+  "deployment_block_number": 4,
+  "deployment_gas_used": 392231,
+  "deployer": "0xC590c1F44d79def6d32A1c9ED9299E9a7796d5E0"
+}
